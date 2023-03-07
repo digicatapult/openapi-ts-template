@@ -1,5 +1,5 @@
 {
-  "name": "@digicatapult/morello-api",
+  "name": "@digicatapult/openapi-ts-template",
   "version": "0.6.9",
   "description": "An interface for executing binaries on it's self and morello host.",
   "main": "src/index.ts",
@@ -7,8 +7,6 @@
     "lint": "eslint .",
     "build:tsoa": "tsoa spec-and-routes",
     "build": "tsoa spec-and-routes && tsc",
-    "examples:update": "cd bin && wget https://github.com/digicatapult/morello-examples/releases/download/latest/morello-examples.tar.gz && tar -xvf morello-examples.tar.gz && rm morello-examples.tar.gz",
-    "examples:clean": "rm -rf bin/* bin/.version",
     "start": "node build/index.js",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q build/index.js | pino-colada\"",
     "test:unit": "NODE_ENV=test ./node_modules/.bin/mocha -r ts-node/register ./src/**/*.test.ts",
@@ -16,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/digicatapult/morello-api.git"
+    "url": "git+https://github.com/digicatapult/openapi-ts-template.git"
   },
   "engines": {
     "node": "16.x.x",
@@ -28,9 +26,9 @@
   "author": "Digital Catapult",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/digicatapult/morello-api/issues"
+    "url": "https://github.com/digicatapult/openapi-ts-template/issues"
   },
-  "homepage": "https://github.com/digicatapult/morello-api#readme",
+  "homepage": "https://github.com/digicatapult/openapi-ts-template#readme",
   "devDependencies": {
     "@types/chai": "^4.3.3",
     "@types/config": "^0.0.41",
@@ -49,7 +47,6 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "mocha": "^10.0.0",
-    "node-mocks-http": "^1.12.1",
     "nodemon": "^2.0.19",
     "prettier": "^2.7.1",
     "sinon": "^14.0.0",
@@ -64,6 +61,7 @@
     "express": "^4.18.1",
     "pino": "^7.11.0",
     "pino-colada": "^2.2.2",
+    "pino-pretty": "^9.4.0",
     "swagger-ui-express": "^4.4.0",
     "tsoa": "^4.0.0"
   }

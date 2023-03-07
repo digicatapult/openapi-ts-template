@@ -1,7 +1,7 @@
 import Ex from 'express'
 import { ValidateError } from 'tsoa'
 
-import log from 'logger'
+import log from '../../lib/Logger'
 
 export interface Response {
   message: string 

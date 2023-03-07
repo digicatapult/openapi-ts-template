@@ -8,7 +8,7 @@ import log from './lib/Logger'
 // index.ts and server.ts
 (async () => {
   const app: Express = await Server()
-  const port: number = config.get('app.port')
+  const port: number = config.get('app.port') || 3000
 
   app.listen(port, () => {
     log.info('it is alive')

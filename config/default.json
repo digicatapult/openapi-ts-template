@@ -2,13 +2,7 @@
   "log": {
     "level": "debug"
   },
-  "morello": {
-    "host": "127.0.0.1",
-    "username": "root",
-    "port": 1022
-  },
   "app": {
-    "port": 3000,
-    "binaryDir": "bin"
+    "port": 3000
   }
 }

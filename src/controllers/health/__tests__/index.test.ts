@@ -1,17 +1,5 @@
-import { health } from '../index'
-import { stub } from 'sinon'
 import { expect } from 'chai'
-import child from 'child_process'
-import config from 'config'
 
-const execute = async () => {
-  try {
-    const controller = new health()
-    return await controller.get('out-of-bounds-read-cheri', ['test'])
-  } catch (err) {
-    return err
-  }
-}
 
 describe('/health controller', () => {
   it('does something', () => {

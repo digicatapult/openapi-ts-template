@@ -17,16 +17,14 @@ export default async (): Promise<Express> => {
   // TODO abstract into a middleware for adding a child to pino logger instance
   app.use((req: any, _, next) => {
     const id = 'some-uuid'
-    log.child({ req_id: id })
-    req.req_id = id 
-    req.log = log
-    
-    return next()
+    req.log = log.child({ req_id: id })
+
+    next()
   })
 
-  app.use(json)
+  app.use(json())
   // app.use(urlencoded({ extended: true })) - for application/x-www-form-urlencoded
-  app.use(cors)
+  app.use(cors())
   app.use(errorHandler)
 
   RegisterRoutes(app)

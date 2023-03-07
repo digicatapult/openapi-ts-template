@@ -8,11 +8,11 @@ import config from 'config'
 // assign logger to req.log?
 const logger: Logger = pino(
   {
-    name: 'morello-api',
+    name: 'openapi-ts-template',
     timestamp: true,
+    prettyPrint: true,
     level: config.get('log.level'),
   },
-  process.stdout
 )
 
 export default logger
