@@ -1,0 +1,10 @@
+{
+  "log": {
+    "level": "warn"
+  },
+  "morello": {
+    "address": "localhost",
+    "username": "root",
+    "port": 1022
+  }
+}
