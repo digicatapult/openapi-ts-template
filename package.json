@@ -1,6 +1,6 @@
 {
   "name": "@digicatapult/openapi-ts-template",
-  "version": "0.6.9",
+  "version": "0.0.0",
   "description": "An interface for executing binaries on it's self and morello host.",
   "main": "src/index.ts",
   "scripts": {
