@@ -1,7 +1,7 @@
 {
   "name": "@digicatapult/openapi-ts-template",
   "version": "0.0.0",
-  "description": "An interface for executing binaries on it's self and morello host.",
+  "description": "An open api typescript nodejs/express api service template",
   "main": "src/index.ts",
   "scripts": {
     "lint": "eslint .",
@@ -61,7 +61,6 @@
     "express": "^4.18.1",
     "pino": "^7.11.0",
     "pino-colada": "^2.2.2",
-    "pino-pretty": "^9.4.0",
     "swagger-ui-express": "^4.4.0",
     "tsoa": "^4.0.0"
   }

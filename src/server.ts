@@ -26,8 +26,8 @@ export default async (): Promise<Express> => {
   })
 
   // app.use(urlencoded({ extended: true })) - for application/x-www-form-urlencoded
-  app.use(json)
-  app.use(cors)
+  app.use(json())
+  app.use(cors())
   app.use(errorHandler)
 
   RegisterRoutes(app)
