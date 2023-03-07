@@ -1,0 +1,29 @@
+
+version: '3'
+
+services:
+  # dscp-node:
+  #  image: digicatapult/dscp-node:latest
+  #  command:
+  #    --base-path /data/
+  #    --dev
+  #    --unsafe-ws-external
+  #    --unsafe-rpc-external
+  #  ports:
+  #    --rpc-cors all
+  #    - 9944:9944
+  #    - 30333:30333
+  #    - 9933:9933
+  #  restart: on-failure
+  db:
+    image: postgres:15.0-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - data-storage:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=l3
+volumes:
+  data-storage:

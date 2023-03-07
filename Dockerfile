@@ -1,0 +1,29 @@
+# syntax=docker/dockerfile:1.4
+FROM node:16-alpine as builder
+
+WORKDIR /openapi-ts-template
+
+# Install base dependencies
+RUN npm -g install npm@8.x.x
+
+COPY package*.json ./
+COPY tsconfig.json ./
+
+RUN npm ci
+COPY . .
+RUN npm run build
+
+# service 
+FROM node:16-alpine as service
+
+WORKDIR /openapi-ts-template
+
+RUN npm -g install npm@8.x.x
+
+COPY package*.json ./
+RUN npm ci --production
+COPY --from=builder /openapi-ts-template/build .
+COPY --from=builder /openapi-ts-template/config ./config
+
+EXPOSE 80
+CMD [ "node", "./index.js" ]
