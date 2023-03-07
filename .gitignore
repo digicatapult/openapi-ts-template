@@ -2,8 +2,6 @@ config/local.json
 
 node_modules/
 build
-bin/*
-!bin/.gitkeep
 src/swagger.json
 src/routes.ts
 dist

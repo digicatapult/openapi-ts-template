@@ -10,7 +10,7 @@ describe('Logger', () => {
 
   it('creates an instance of logger and returns log object', () => {
     expect(log.bindings()).to.deep.equal({
-      name: 'morello-api',
+      name: 'openapi-ts-template',
       test: true,
     })
   })
