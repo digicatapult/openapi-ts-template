@@ -1,8 +1,0 @@
-{
-  "log": {
-    "level": "warn"
-  },
-  "app": {
-    "port": 80
-  }
-}

@@ -17,7 +17,6 @@
     "esModuleInterop": true,
     "paths":{
       "pino": ["node_modules/pino"],
-      "logger": ["src/lib/Logger"],
       "types": ["types"]
     }
   },
