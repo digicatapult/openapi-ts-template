@@ -3,8 +3,8 @@ import fs from 'fs'
 import path from 'path'
 
 import type { Logger } from 'pino'
-import { logger } from '../lib/Logger' 
-import env from '../env'
+import { create } from '../logger/index' 
+import env from '../../env'
 
 interface Config {
   client: 'pg' 
@@ -44,14 +44,14 @@ const config: Config = {
  */
 export default class Database {
   private client: Knex
-  private log: Logger & any 
+  private log: Logger 
   readonly dir: string
   public db: { [k: string]: keyof Database | Object }
 
   constructor() {
-    this.log = logger
+    this.log = create({ controller: 'database', config }) 
     this.client = knex(config)
-    this.dir = `${__dirname}/models`
+    this.dir = `${process.cwd()}/src/models`
     this.db = {}
   }
 
@@ -60,6 +60,7 @@ export default class Database {
 
     fs.readdirSync(this.dir).forEach((file: string) => {
       const { name } = path.parse(file)
+      console.log({ name, a: this.db})
       this.db[name] = () => this.client(name)
     })
 

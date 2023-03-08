@@ -3,17 +3,21 @@ import pino, { Logger } from 'pino'
 
 import env from '../../env'
 
-export const logger: Logger = pino({
+type LogData = { [k: string]: string | number | Object | undefined } 
+
+interface Req extends Request {
+  log: Logger,
+  path: string,
+}
+
+const logger: Logger = pino({
   name: 'openapi-ts-template',
   timestamp: true,
   prettyPrint: true,
   level: env.LOG_LEVEL,
 })
 
-interface Req extends Request {
-  log: Logger,
-  path: string,
-}
+export const create = (data: LogData): Logger => logger.child(data)
 
 export default (req: Req, next: NextFunction) => {
   const req_id: string = 'some-uuid'

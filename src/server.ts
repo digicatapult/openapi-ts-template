@@ -3,18 +3,18 @@ import { setup, serve } from 'swagger-ui-express'
 
 import cors from 'cors'
 import { json } from 'body-parser'
-import errorHandler from './lib/ErrorHandler'
+import errorHandler from './lib/error-handler'
 
 import { RegisterRoutes } from './routes'
 import * as swaggerJson from './swagger.json'
-import Database from './database'
-import log from './lib/Logger'
+import Database from './lib/db'
+import log from './lib/logger'
 
 
 export default async (): Promise<Express> => {
+  const app: Express = express()
   const db = new Database().init()
   console.log({ db })
-  const app: Express = express()
 
   app.use((req: any, _, next: NextFunction) => log(req, next))
   // app.use(urlencoded({ extended: true })) - for application/x-www-form-urlencoded

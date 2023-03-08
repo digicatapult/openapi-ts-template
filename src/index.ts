@@ -2,14 +2,14 @@ import env from './env'
 import { Express } from 'express'
 
 import Server from './server'
-import { logger } from './lib/Logger'
+import { create } from './lib/logger'
+import { Logger } from 'pino'
 
-// why separation? e2e?
-// index.ts and server.ts
 (async () => {
   const app: Express = await Server()
+  const log: Logger = create({ controller: 'server.ts' })
 
   app.listen(env.PORT, () => {
-    logger.info('it is alive')
+    log.info('it is alive')
   })
 })()
