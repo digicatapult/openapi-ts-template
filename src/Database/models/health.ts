@@ -1,3 +1,5 @@
 export interface Health {
-  get: (req: any) => Promise<any>
+  req_id: string,
+  status: number,
+  message: string,
 }

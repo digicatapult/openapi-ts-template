@@ -1,14 +1,32 @@
 import knex, { Knex } from 'knex'
 import fs from 'fs' 
+import path from 'path'
 
 import { Logger } from 'pino'
 import log from '../lib/Logger' 
 import env from '../env'
 
-const config = { // TODO define interface
+interface Config {
+  client: 'pg' 
+  migrations: {
+    tableName: 'migrations'
+    directory: string 
+    extension: 'ts' 
+  },
+  connection: {
+    host: string 
+    port: number
+    user: string
+    password: string
+    database: string 
+  },
+}
+
+const config: Config = {
   client: 'pg',
   migrations: {
     tableName: 'migrations',
+    directory: '/migration',
     extension: "ts",
   },
   connection: {
@@ -20,33 +38,31 @@ const config = { // TODO define interface
   },
 }
 
+/** Creates a connection to the postgres instance
+ * usage: var db = new Database().init()
+ * db.Example().where(id); db.Table.select(id); 
+ */
 export default class Database {
-  public db: {[key: string]: Knex & any }
-  public client: Knex
+  private client: Knex
   private log: Logger
   readonly dir: string
+  [k: string]: keyof Database | any 
+
 
   constructor() {
     this.log = log.child({ config }) 
-    this.dir = `${__dirname}/models`
     this.client = knex(config)
-    this.db = {}
+    this.dir = `${__dirname}/models`
   }
 
   init(): void {
-    this.log.debug('configure database models')
+    this.log.debug('reading database models')
 
     fs.readdirSync(this.dir).forEach((file: string) => {
-      const name = file.replace('.js', '')
-      const _client = this.client(name)
-
-      this.db[name] = {
-        // raw: _client, 
-        create: (data: any, pick: any) => _client.insert(data, pick),
-        read: (select: any, where: any) => _client.select(select).where(where),
-        delete: (where: any) => _client.delete(where)
-        // update: this.client(name),
-      }
+      const name: string = path.parse(file).name
+      this[name] = () => this.client(name)
     })
+
+    this.log.debug({ models: this.db })
   } 
 } 
