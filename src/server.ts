@@ -8,7 +8,11 @@ import errorHandler from './lib/ErrorHandler'
 
 import { RegisterRoutes } from './routes'
 import * as swaggerJson from './swagger.json'
+import Database from './Database'
 import log from './lib/Logger'
+
+
+const db = new Database().init()
 
 // server
 export default async (): Promise<Express> => {
@@ -22,7 +26,9 @@ export default async (): Promise<Express> => {
       req_id
     })
 
-    next()
+    log.info(db, ' asdasd ')
+
+    return next(req)
   })
 
   // app.use(urlencoded({ extended: true })) - for application/x-www-form-urlencoded

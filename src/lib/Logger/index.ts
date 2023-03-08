@@ -1,5 +1,6 @@
 import pino, { Logger } from 'pino'
-import config from 'config'
+
+import env from '../../env'
 
 /**
  * TODOs: 
@@ -12,7 +13,7 @@ const logger: Logger = pino(
     name: 'openapi-ts-template',
     timestamp: true,
     prettyPrint: true,
-    level: config.get('log.level'),
+    level: env.LOG_LEVEL,
   },
   process.stdout,
 )

@@ -1,4 +1,4 @@
-import config from 'config'
+import env from './env'
 import { Express } from 'express'
 
 import Server from './server'
@@ -8,9 +8,8 @@ import log from './lib/Logger'
 // index.ts and server.ts
 (async () => {
   const app: Express = await Server()
-  const port: number = config.get('app.port') || 3000
 
-  app.listen(port, () => {
+  app.listen(env.PORT, () => {
     log.info('it is alive')
   })
 })()

@@ -1,4 +1,4 @@
-import envalid from 'envalid'
+import * as envalid from 'envalid'
 import dotenv from 'dotenv'
 
 dotenv.config({ path: '.env' })

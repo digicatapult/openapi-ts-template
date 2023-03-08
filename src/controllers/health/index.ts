@@ -1,8 +1,7 @@
 import { Controller, Get, Route, Request } from 'tsoa'
-import { Health} from '../../types'
 
 @Route('health')
-export class health extends Controller implements Health {
+export class health extends Controller {
   constructor() {
     super()
   }
