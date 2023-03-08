@@ -2,8 +2,8 @@ import knex, { Knex } from 'knex'
 import fs from 'fs' 
 import path from 'path'
 
-import { Logger } from 'pino'
-import { log } from '../lib/Logger' 
+import type { Logger } from 'pino'
+import { logger } from '../lib/Logger' 
 import env from '../env'
 
 interface Config {
@@ -46,12 +46,13 @@ export default class Database {
   private client: Knex
   private log: Logger & any 
   readonly dir: string
-  [k: string]: keyof Database | Object
+  public db: { [k: string]: keyof Database | Object }
 
   constructor() {
-    this.log = log
+    this.log = logger
     this.client = knex(config)
     this.dir = `${__dirname}/models`
+    this.db = {}
   }
 
   init(): void {
@@ -59,7 +60,7 @@ export default class Database {
 
     fs.readdirSync(this.dir).forEach((file: string) => {
       const { name } = path.parse(file)
-      this[name] = () => this.client(name)
+      this.db[name] = () => this.client(name)
     })
 
     this.log.debug({ models: this.db })

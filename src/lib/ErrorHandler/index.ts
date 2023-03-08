@@ -1,8 +1,6 @@
 import Ex from 'express'
 import { ValidateError } from 'tsoa'
 
-import log from '../../lib/Logger'
-
 export interface Response {
   message: string 
   [name: string]: unknown
@@ -23,11 +21,11 @@ export class CustomError extends Error {
 
 export default function(
   err: Error,
-  req: Ex.Request,
+  req: Ex.Request & { log: any },
   res: Ex.Response,
   next: Ex.NextFunction,
 ): Ex.Response | void {
-  log.debug('error occured', { err, req })
+  req.log.debug('error occured', { err, req })
 
   // handle TSOA validations
   if (err instanceof ValidateError) return res.status(422).send({
