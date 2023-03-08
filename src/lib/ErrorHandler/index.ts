@@ -8,6 +8,7 @@ export interface Response {
   [name: string]: unknown
 }
 
+/*    --- A REFERENCE --- 
 export class CustomError extends Error {
   readonly message: string
   readonly code: number
@@ -18,6 +19,7 @@ export class CustomError extends Error {
     this.code = code || 500
   }
 }
+*/
 
 export default function(
   err: Error,
@@ -31,11 +33,6 @@ export default function(
   if (err instanceof ValidateError) return res.status(422).send({
     ...err,
     details: err.fields
-  })
-
-  if (err instanceof CustomError) return res.status(err.code).send({
-    ...err,
-    message: err.message
   })
 
   return next()

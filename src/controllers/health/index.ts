@@ -13,7 +13,8 @@ export class health extends Controller {
     log.debug({ method: 'GET', controller: '/health'})
     return Promise.resolve({
         status: 200,
-        message: 'response from /health',
+        message: 'success',
+        req_id: req.req_id,
     })
   }
 }
