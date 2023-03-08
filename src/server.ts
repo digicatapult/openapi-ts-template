@@ -8,7 +8,7 @@ import errorHandler from './lib/ErrorHandler'
 
 import { RegisterRoutes } from './routes'
 import * as swaggerJson from './swagger.json'
-import Database from './Database'
+import Database from './database'
 import log from './lib/Logger'
 
 

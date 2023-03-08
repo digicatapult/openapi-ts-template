@@ -9,6 +9,7 @@ const config = { // TODO define interface
   client: 'pg',
   migrations: {
     tableName: 'migrations',
+    extension: "ts",
   },
   connection: {
    host: env.DB_HOST,
