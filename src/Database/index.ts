@@ -46,9 +46,7 @@ export default class Database {
   private client: Knex
   private log: Logger
   readonly dir: string
-  [k: string]: keyof Database | any 
-
-
+  [k: string]: keyof Database | Object 
   constructor() {
     this.log = log.child({ config }) 
     this.client = knex(config)
@@ -59,7 +57,7 @@ export default class Database {
     this.log.debug('reading database models')
 
     fs.readdirSync(this.dir).forEach((file: string) => {
-      const name: string = path.parse(file).name
+      const { name } = path.parse(file)
       this[name] = () => this.client(name)
     })
 
