@@ -12,21 +12,23 @@ import Database from './database'
 import log from './lib/Logger'
 
 
-const db = new Database().init()
 
 // server
 export default async (): Promise<Express> => {
+  const db = new Database().init()
   const app: Express = express()
 
+  console.log({ db })
   // TODO abstract into a middleware for adding a child to pino logger instance
   app.use((req: any, _, next) => {
     const req_id: string = 'some-uuid'
+
     if (!req.log) req.log = log.child({
       path: req.path,
-      req_id
+      req_id,
+      time: Date.now(),
     })
 
-    log.info(db, ' asdasd ')
 
     return next(req)
   })

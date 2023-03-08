@@ -3,7 +3,7 @@ import fs from 'fs'
 import path from 'path'
 
 import { Logger } from 'pino'
-import log from '../lib/Logger' 
+import { log } from '../lib/Logger' 
 import env from '../env'
 
 interface Config {
@@ -44,11 +44,12 @@ const config: Config = {
  */
 export default class Database {
   private client: Knex
-  private log: Logger
+  private log: Logger & any 
   readonly dir: string
-  [k: string]: keyof Database | Object 
+  [k: string]: keyof Database | Object
+
   constructor() {
-    this.log = log.child({ config }) 
+    this.log = log
     this.client = knex(config)
     this.dir = `${__dirname}/models`
   }
