@@ -4,7 +4,7 @@ FROM node:lts-alpine as builder
 WORKDIR /openapi-ts-template
 
 # Install base dependencies
-RUN npm -g install npm@8.x.x
+RUN npm install -g npm@latest
 
 COPY package*.json ./
 COPY tsconfig.json ./

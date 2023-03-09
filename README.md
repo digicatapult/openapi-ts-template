@@ -6,17 +6,18 @@ A `Node.js` typescript template with open api implementation
 
 ## Configuration
 
-Use a `.env` at root of the repository to set values for the environment variables defined in [custom-environment-variables.json](./config/custom-environment-variables.json).
+Use a `.env` at root of the repository to set values for the environment variables defined in `.env` file. 
 
 | variable         | required |   default   | description                                                                          |
-| :--------------- | :------: | :---------: | :----------------------------------------------------------------------------------- |
-| PORT             |    N     |   `3000`    | The port for the API to listen on                                                    |
-| LOG_LEVEL        |    N     |   `debug`   | Logging level. Valid values are [`trace`, `debug`, `info`, `warn`, `error`, `fatal`] |
-| ENVIRONMENT_VAR  |    N     |  `example`  | An environment specific variable                                                     |
-
-[default.json](./config/default.json) contains default configuration values.
-
-Alternatively create a `./config/local.json` file to override the values of `default.json`.
+| :--------------- | :------: | :----------------------: | :----------------------------------------------------------------------------------- |
+| PORT             |    N     |   `3000`                 | The port for the API to listen on                                                    |
+| LOG_LEVEL        |    N     |   `debug`                | Logging level. Valid values are [`trace`, `debug`, `info`, `warn`, `error`, `fatal`] |
+| ENVIRONMENT_VAR  |    N     |  `example`               | An environment specific variable                                                     |
+| DB_PORT          |    N     |   `5432`                 | The port for the database                                                            |
+| DB_HOST          |    N     |   `localhost`            | The database hostname / host                                                         |
+| DB_NAME          |    N     |   `openapi-ts-template ` | The database name                                                                    |
+| DB_USERNAME      |    N     |   `postgres`             | The database username                                                                |
+| DB_PASSWORD      |    N     |   `postgres`             | The database password                                                                |
 
 ## Getting started
 
@@ -39,6 +40,7 @@ localhost:3000/swagger/
 
 ## Tests
 
+- [ ] - TODO expand on this after first controllers are in
 **Unit** and **integration** test are executed by calling the following commands:
 
 ```sh
