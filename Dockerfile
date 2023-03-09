@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.4
-FROM node:16-alpine as builder
+FROM node:lts-alpine as builder
 
 WORKDIR /openapi-ts-template
 
@@ -14,7 +14,7 @@ COPY . .
 RUN npm run build
 
 # service 
-FROM node:16-alpine as service
+FROM node:lts-alpine as service
 
 WORKDIR /openapi-ts-template
 
