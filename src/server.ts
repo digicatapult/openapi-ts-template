@@ -1,4 +1,4 @@
-import express, { Express, NextFunction } from 'express'
+import express, { Express, NextFunction, Request } from 'express'
 import { setup, serve } from 'swagger-ui-express'
 
 import cors from 'cors'
@@ -8,7 +8,7 @@ import errorHandler from './lib/error-handler'
 import { RegisterRoutes } from './routes'
 import * as swaggerJson from './swagger.json'
 import Database from './lib/db'
-import log from './lib/logger'
+import logger from './lib/logger'
 
 
 export default async (): Promise<Express> => {
@@ -16,7 +16,7 @@ export default async (): Promise<Express> => {
   const db = new Database().init()
   console.log({ db })
 
-  app.use((req: any, _, next: NextFunction) => log(req, next))
+  app.use((req: Request, _, next: NextFunction) => logger(req, { a: 'a' }, next))
   // app.use(urlencoded({ extended: true })) - for application/x-www-form-urlencoded
   app.use(json())
   app.use(cors())

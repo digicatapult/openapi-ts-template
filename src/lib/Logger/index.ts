@@ -3,7 +3,7 @@ import pino, { Logger } from 'pino'
 
 import env from '../../env'
 
-type LogData = { [k: string]: string | number | Object | undefined } 
+export type Details = { [k: string]: string | number | Object | undefined } 
 
 interface Req extends Request {
   log: Logger,
@@ -17,7 +17,7 @@ const logger: Logger = pino({
   level: env.LOG_LEVEL,
 })
 
-export const create = (data: LogData): Logger => logger.child(data)
+export const add = (details: Details): Logger => logger.child(details)
 
 export default (req: Req, next: NextFunction) => {
   const req_id: string = 'some-uuid'
