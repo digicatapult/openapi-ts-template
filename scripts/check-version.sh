@@ -52,16 +52,16 @@ PUBLISHED_VERSIONS=$(git tag | grep "^v[0-9]\+\.[0-9]\+\.[0-9]\+\(\-[a-zA-Z-]\+\
 CURRENT_VERSION=$(yq eval '.version' ./package.json)
 
 if check_version_greater "$CURRENT_VERSION" "$PUBLISHED_VERSIONS"; then
-  echo "##[set-output name=VERSION;]v$CURRENT_VERSION"
-  echo "##[set-output name=BUILD_DATE;]$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
-  echo "##[set-output name=IS_NEW_VERSION;]true"
+  echo "##[workflow-command name=VERSION;]v$CURRENT_VERSION"
+  echo "##[workflow-command name=BUILD_DATE;]$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+  echo "##[workflow-command name=IS_NEW_VERSION;]true"
   if [[ $CURRENT_VERSION =~ [-] ]]; then
-    echo "##[set-output name=IS_PRERELEASE;]true"
-    echo "##[set-output name=NPM_RELEASE_TAG;]next"
+    echo "##[workflow-command name=IS_PRERELEASE;]true"
+    echo "##[workflow-command name=NPM_RELEASE_TAG;]next"
   else
-    echo "##[set-output name=IS_PRERELEASE;]false"
-    echo "##[set-output name=NPM_RELEASE_TAG;]latest"
+    echo "##[workflow-command name=IS_PRERELEASE;]false"
+    echo "##[workflow-command name=NPM_RELEASE_TAG;]latest"
   fi
 else
-  echo "##[set-output name=IS_NEW_VERSION;]false"
+  echo "##[workflow-command name=IS_NEW_VERSION;]false"
 fi
