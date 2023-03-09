@@ -2,6 +2,7 @@ import { Controller, Get, Route, Request } from 'tsoa'
 
 import * as Ex from 'express'
 import type { Health } from '../../models'
+import { Logger } from 'pino'
 
 @Route('health')
 export class health extends Controller {
@@ -10,7 +11,7 @@ export class health extends Controller {
   }
 
   @Get('/')
-  public async get(@Request() req: Ex.Request & { req_id: string }): Promise<Health> {
+  public async get(@Request() req: Ex.Request & { log: Logger; req_id: string }): Promise<Health> {
     req.log.debug({ msg: 'new request received', controller: '/health' })
 
     return Promise.resolve({
