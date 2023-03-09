@@ -26,8 +26,8 @@ Use a `.env` at root of the repository to set values for the environment variabl
 docker compose up -d
 # install packages
 npm i
-# generate swagger and route files for Open API
-npm run build
+# run migrations
+npm run db:migrate
 # start service in dev mode. In order to start in full - npm start"
 npm run dev
 ```
@@ -40,10 +40,14 @@ localhost:3000/swagger/
 
 ## Tests
 
-- [ ] - TODO expand on this after first controllers are in
 **Unit** and **integration** test are executed by calling the following commands:
 
 ```sh
 npm run test:integration
 npm run test:unit
 ```
+
+## TODO
+- [ ] - expand on this after first controllers are in
+- [ ] - get rid of all anys
+- [ ] - expand this list
