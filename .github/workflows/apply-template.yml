@@ -46,7 +46,7 @@ jobs:
       - name: Update repo name references
         run: |
           find . \( -path ./.git -prune -o -path ./.github/workflows -prune \) -type f -o -name '*' -exec sed -i 's/openapi-ts-template/${{ needs.repo_ids.outputs.repo_name }}/gI' {} \;
-          find . \( -path ./.git -prune -o -path ./.github/workflows -prune \) -type f -o -name '*' -exec sed -i 's/cdecatapult/${{ needs.repo_ids.outputs.org_name }}/gI' {} \;
+          find . \( -path ./.git -prune -o -path ./.github/workflows -prune \) -type f -o -name '*' -exec sed -i 's/digicatapult/${{ needs.repo_ids.outputs.org_name }}/gI' {} \;
       - name: Remove template workflow
         run: rm ./.github/workflows/apply-template.yml
       - name: Set Git Config
