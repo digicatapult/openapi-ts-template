@@ -1,0 +1,7 @@
+ignores: [
+  "@types/config",
+  "@types/sinon",
+  "concurrently",
+  "nodemon",
+  "sinon"
+]
