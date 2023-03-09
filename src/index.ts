@@ -9,6 +9,6 @@ import { Logger } from 'pino'
   const log: Logger = Log.add({ controller: 'server.ts', env })
 
   app.listen(env.PORT, () => {
-    log.info(`service listening on [${env.PORT}] port`)
+    log.info(`openapi-ts-template listening on ${env.PORT} port`)
   })
 })()
