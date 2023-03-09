@@ -18,7 +18,7 @@ FROM node:lts-alpine as service
 
 WORKDIR /openapi-ts-template
 
-RUN npm -g install npm@8.x.x
+RUN npm -g install npm@9.x.x
 
 COPY package*.json ./
 RUN npm ci --production
