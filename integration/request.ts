@@ -2,7 +2,7 @@
 import request from 'supertest'
 
 import Server from '../src/server'
-      
+
 // at the moment it creates a new instance everytime,
 // converting into a class would eliminate as it would create
 // one instance during the init along with headers and etc for different scenarios

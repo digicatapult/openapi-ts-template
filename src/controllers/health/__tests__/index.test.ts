@@ -1,11 +1,9 @@
 import { expect } from 'chai'
 
-
 describe('/health controller', () => {
   it('does something', () => {
     expect(1).to.equal(1)
   })
-  
 })
 
 /*

@@ -10,14 +10,11 @@ import * as swaggerJson from './swagger.json'
 import Database from './lib/db'
 import logger, { Req } from './lib/logger'
 
-const db = new Database().init() 
-console.log(db)
-
 export default async (): Promise<Express> => {
   const app: Express = express()
+  new Database().init() /* not assigned due to linting */
 
-  app.use((req: Request, _, next: NextFunction) =>
-    logger(req as Req, next))
+  app.use((req: Request, _, next: NextFunction) => logger(req as Req, next))
   // app.use(urlencoded({ extended: true })) - for application/x-www-form-urlencoded
   app.use(json())
   app.use(cors())

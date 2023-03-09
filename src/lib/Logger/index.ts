@@ -3,11 +3,11 @@ import pino, { Logger } from 'pino'
 
 import env from '../../env'
 
-export type Details = { [k: string]: string | number | Object | undefined } 
+export type Details = { [k: string]: string | number | undefined }
 
 export interface Req extends Request {
-  log: Logger,
-  path: string,
+  log: Logger
+  path: string
 }
 
 const logger: Logger = pino({
@@ -19,14 +19,14 @@ const logger: Logger = pino({
 export const add = (details: Details): Logger => logger.child(details)
 
 export default (req: Req, next: NextFunction) => {
-  const req_id: string = 'some-uuid'
+  const req_id = 'some-uuid'
 
-  if (!req.log) req.log = logger.child({
-    path: req.path,
-    req_id,
-    timestamp : Date.now(),
-  })
-
+  if (!req.log)
+    req.log = logger.child({
+      path: req.path,
+      req_id,
+      timestamp: Date.now(),
+    })
 
   return next(req)
 }

@@ -1,8 +1,9 @@
 import Ex from 'express'
+import { Logger } from 'pino'
 import { ValidateError } from 'tsoa'
 
 export interface Response {
-  message: string 
+  message: string
   [name: string]: unknown
 }
 
@@ -19,19 +20,20 @@ export class CustomError extends Error {
 }
 */
 
-export default function(
+export default function (
   err: Error,
-  req: Ex.Request & { log: any },
+  req: Ex.Request & { log: Logger },
   res: Ex.Response,
-  next: Ex.NextFunction,
+  next: Ex.NextFunction
 ): Ex.Response | void {
   req.log.debug('error occured', { err, req })
 
   // handle TSOA validations
-  if (err instanceof ValidateError) return res.status(422).send({
-    ...err,
-    details: err.fields
-  })
+  if (err instanceof ValidateError)
+    return res.status(422).send({
+      ...err,
+      details: err.fields,
+    })
 
   return next()
 }

@@ -1,5 +1,5 @@
-import type { Knex } from "knex";
-import env from '../../env';
+import type { Knex } from 'knex'
+import env from '../../env'
 
 export const pgConfig = {
   client: 'pg',
