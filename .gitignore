@@ -7,6 +7,7 @@ src/routes.ts
 dist
 
 .npm
+.env
 .cache
 npm-debug.log*
 *.log
