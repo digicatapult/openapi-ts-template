@@ -3,67 +3,41 @@ import fs from 'fs'
 import path from 'path'
 
 import type { Logger } from 'pino'
-import { create } from '../logger/index' 
-import env from '../../env'
+import * as log from '../logger' 
+import { pgConfig } from './knexfile'
 
-interface Config {
-  client: 'pg' 
-  migrations: {
-    tableName: 'migrations'
-    directory: string 
-    extension: 'ts' 
-  },
-  connection: {
-    host: string 
-    port: number
-    user: string
-    password: string
-    database: string 
-  },
-}
-
-const config: Config = {
-  client: 'pg',
-  migrations: {
-    tableName: 'migrations',
-    directory: '/migration',
-    extension: "ts",
-  },
-  connection: {
-   host: env.DB_HOST,
-    port: env.DB_PORT,
-    user: env.DB_USERNAME,
-    password: env.DB_PASSWORD,
-    database: env.DB_NAME,
-  },
-}
+const MODELS_DIRECTORY = `${process.cwd()}/src/models`
 
 /** Creates a connection to the postgres instance
  * usage: var db = new Database().init()
  * db.Example().where(id); db.Table.select(id); 
  */
 export default class Database {
-  private client: Knex
+  public client: Knex
   private log: Logger 
-  readonly dir: string
-  public db: { [k: string]: keyof Database | Object }
-
+  public db: any
+  
   constructor() {
-    this.log = create({ controller: 'database', config }) 
-    this.client = knex(config)
-    this.dir = `${process.cwd()}/src/models`
+    this.log = log.add({ controller: 'database' }) 
+    this.client = knex(pgConfig)
     this.db = {}
   }
 
   init(): void {
-    this.log.debug('reading database models')
+    this.log.debug('initializing db models')
 
-    fs.readdirSync(this.dir).forEach((file: string) => {
+    fs.readdirSync(MODELS_DIRECTORY).forEach((file: string) => {
       const { name } = path.parse(file)
-      console.log({ name, a: this.db})
-      this.db[name] = () => this.client(name)
+
+      if(name != 'index.d') {
+        console.log('not inde', name)
+        this.db[name] = () => this.client(name)
+      } else {
+      }
     })
 
-    this.log.debug({ models: this.db })
+    const { index, ...rest } = this.db
+    this.log.info(this.db, this.client, rest)
+
   } 
 } 

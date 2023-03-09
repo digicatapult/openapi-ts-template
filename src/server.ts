@@ -8,15 +8,16 @@ import errorHandler from './lib/error-handler'
 import { RegisterRoutes } from './routes'
 import * as swaggerJson from './swagger.json'
 import Database from './lib/db'
-import logger from './lib/logger'
+import logger, { Req } from './lib/logger'
 
+const db = new Database().init() 
+console.log(db)
 
 export default async (): Promise<Express> => {
   const app: Express = express()
-  const db = new Database().init()
-  console.log({ db })
 
-  app.use((req: Request, _, next: NextFunction) => logger(req, { a: 'a' }, next))
+  app.use((req: Request, _, next: NextFunction) =>
+    logger(req as Req, next))
   // app.use(urlencoded({ extended: true })) - for application/x-www-form-urlencoded
   app.use(json())
   app.use(cors())

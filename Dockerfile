@@ -23,7 +23,6 @@ RUN npm -g install npm@8.x.x
 COPY package*.json ./
 RUN npm ci --production
 COPY --from=builder /openapi-ts-template/build .
-COPY --from=builder /openapi-ts-template/config ./config
 
 EXPOSE 80
 CMD [ "node", "./index.js" ]

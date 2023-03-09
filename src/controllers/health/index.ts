@@ -8,7 +8,7 @@ export class health extends Controller {
 
   @Get('/')
   public async get(@Request() req: any): Promise<any> {
-    // log.debug({ method: 'GET', controller: '/health'})
+    req.log.debug({ msg: 'new request received', controller: '/health' })
 
     return Promise.resolve({
         status: 200,

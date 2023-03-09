@@ -5,7 +5,7 @@ import env from '../../env'
 
 export type Details = { [k: string]: string | number | Object | undefined } 
 
-interface Req extends Request {
+export interface Req extends Request {
   log: Logger,
   path: string,
 }
@@ -13,7 +13,6 @@ interface Req extends Request {
 const logger: Logger = pino({
   name: 'openapi-ts-template',
   timestamp: true,
-  prettyPrint: true,
   level: env.LOG_LEVEL,
 })
 
