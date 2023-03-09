@@ -22,14 +22,14 @@ jobs:
         run: |
           LINES=$(grep openapi-ts-template ./package.json)
           if [ -z "$LINES" ]; then
-            echo "::workflow-command name=IS_RENAMED::true"
+            echo "IS_RENAMED" >> true"
           else
-            echo "::workflow-command name=IS_RENAMED::false"
+            echo "IS_RENAMED" >> false"
           fi
           REPO_NAME=$(echo "${{ github.event.repository.name }}" | tr '[:upper:]' '[:lower:]')
           ORG_NAME=$(echo "${{ github.event.repository.owner.name }}" | tr '[:upper:]' '[:lower:]')
-          echo "::workflow-command name=REPO_NAME::$REPO_NAME"
-          echo "::workflow-command name=ORG_NAME::$ORG_NAME"
+          echo "REPO_NAME >> $REPO_NAME"
+          echo "ORG_NAME >> $ORG_NAME"
   update-repo:
     name: Update repository references
     runs-on: ubuntu-latest
@@ -43,15 +43,10 @@ jobs:
       - name: Reset versioning
         run: |
           npm version 0.0.1 --allow-same-version --no-git-tag-version
-          yq eval -i '.version |= "0.0.1"' ./helm/openapi-ts-template/Chart.yaml
-          yq eval -i '.appVersion |= "0.0.1"' ./helm/openapi-ts-template/Chart.yaml
-          yq eval -i '.image.tag |= "v0.0.1"' ./helm/openapi-ts-template/values.yaml
       - name: Update repo name references
         run: |
           find . \( -path ./.git -prune -o -path ./.github/workflows -prune \) -type f -o -name '*' -exec sed -i 's/openapi-ts-template/${{ needs.repo_ids.outputs.repo_name }}/gI' {} \;
           find . \( -path ./.git -prune -o -path ./.github/workflows -prune \) -type f -o -name '*' -exec sed -i 's/cdecatapult/${{ needs.repo_ids.outputs.org_name }}/gI' {} \;
-      - name: Rename Helm Directory
-        run: mv ./helm/openapi-ts-template ./helm/${{ needs.repo_ids.outputs.repo_name }}
       - name: Remove template workflow
         run: rm ./.github/workflows/apply-template.yml
       - name: Set Git Config
