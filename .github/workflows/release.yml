@@ -99,7 +99,7 @@ jobs:
         with:
           time: "30s"
       - name: Initialise DB
-        run: npx knex migrate:latest --env test
+        run: npm run db:migrate
       - name: Run tests
         run: npm run test
   check-version:
