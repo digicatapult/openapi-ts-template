@@ -19,7 +19,7 @@ export const pgConfig = {
   },
 }
 
-const config: { [key: string]: Knex.Config } = {
+export const config: { [key: string]: Knex.Config } = {
   test: pgConfig,
   development: pgConfig,
   production: {
@@ -33,5 +33,3 @@ const config: { [key: string]: Knex.Config } = {
     },
   },
 }
-
-module.exports = config

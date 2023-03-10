@@ -1,7 +1,11 @@
 import * as envalid from 'envalid'
 import dotenv from 'dotenv'
 
-dotenv.config({ path: '.env' })
+if (process.env.NODE_ENV === 'test') {
+  dotenv.config({ path: 'test/test.env' })
+} else {
+  dotenv.config()
+}
 
 export default envalid.cleanEnv(process.env, {
   PORT: envalid.port({ default: 3000 }),

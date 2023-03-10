@@ -1,7 +1,7 @@
 import { describe, before, test } from 'mocha'
 import { Express } from 'express'
 import { expect } from 'chai'
-import createHttpServer from '../src/server' 
+import createHttpServer from '../src/server'
 import { getHealth } from './routerHelper'
 
 describe('health check', () => {
@@ -11,7 +11,7 @@ describe('health check', () => {
     app = await createHttpServer()
   })
 
-  test('Happy Path - aarch64', async () => {
+  test('should return 200', async () => {
     const response = await getHealth(app)
 
     expect(response.status).to.equal(200)

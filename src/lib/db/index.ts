@@ -1,13 +1,12 @@
 import knex, { Knex } from 'knex'
 import fs from 'fs'
 import path from 'path'
-
 import type { Logger } from 'pino'
-import * as log from '../logger'
+
+import logger from '../logger'
 import { pgConfig } from './knexfile'
 
 const MODELS_DIRECTORY = `${process.cwd()}/src/models`
-
 /** Creates a connection to the postgres instance
  * usage: var db = new Database().init()
  * db.Example().where(id); db.Table.select(id);
@@ -18,7 +17,7 @@ export default class Database {
   public db: { [k: string]: unknown }
 
   constructor() {
-    this.log = log.add({ controller: 'database' })
+    this.log = logger
     this.client = knex(pgConfig)
     this.db = {}
   }

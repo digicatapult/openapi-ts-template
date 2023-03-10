@@ -1,39 +1,33 @@
-import Ex from 'express'
-import { Logger } from 'pino'
+import { Response as ExResponse, Request as ExRequest, NextFunction } from 'express'
 import { ValidateError } from 'tsoa'
 
-export interface Response {
-  message: string
-  [name: string]: unknown
+import logger from '../logger'
+
+export interface ValidateErrorJSON {
+  message: 'Validation failed'
+  details: { [name: string]: unknown }
 }
 
-/*    --- A REFERENCE --- 
-export class CustomError extends Error {
-  readonly message: string
-  readonly code: number
-
-  constructor(message: string, code: number) {
-    super(message)
-    this.message = message 
-    this.code = code || 500
+export const errorHandler = function errorHandler(
+  err: unknown,
+  req: ExRequest,
+  res: ExResponse,
+  next: NextFunction
+): ExResponse | void {
+  if (err instanceof ValidateError) {
+    logger.debug(`Handled Validation Error for ${req.path}:`, err.fields)
+    const response: ValidateErrorJSON = {
+      message: 'Validation failed',
+      details: err?.fields,
+    }
+    return res.status(422).json(response)
   }
-}
-*/
-
-export default function (
-  err: Error,
-  req: Ex.Request & { log: Logger },
-  res: Ex.Response,
-  next: Ex.NextFunction
-): Ex.Response | void {
-  req.log.debug('error occured', { err, req })
-
-  // handle TSOA validations
-  if (err instanceof ValidateError)
-    return res.status(422).send({
-      ...err,
-      details: err.fields,
+  if (err instanceof Error) {
+    logger.warn('Unexpected error thrown in handler: %s', err.message)
+    return res.status(500).json({
+      message: 'Internal Server Error',
     })
+  }
 
-  return next()
+  next()
 }
