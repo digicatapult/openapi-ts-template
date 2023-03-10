@@ -6,7 +6,8 @@ import type { Logger } from 'pino'
 import { logger } from '../logger'
 import { pgConfig } from './knexfile'
 
-const MODELS_DIRECTORY = `${process.cwd()}/src/models`
+const MODELS_DIRECTORY = path.join(__dirname, '../../models')
+
 /** Creates a connection to the postgres instance
  * usage: var db = new Database().init()
  * db.Example().where(id); db.Table.select(id);
