@@ -22,7 +22,7 @@
   },
   "exclude": [
     "**/*.test.ts",
-    "integration",
+    "test",
     "**/__test__"
   ]
 }

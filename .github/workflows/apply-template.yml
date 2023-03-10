@@ -22,14 +22,14 @@ jobs:
         run: |
           LINES=$(grep openapi-ts-template ./package.json)
           if [ -z "$LINES" ]; then
-            echo "IS_RENAMED" >> true"
+            echo "IS_RENAMED=true" >> $GITHUB_OUTPUT
           else
-            echo "IS_RENAMED" >> false"
+            echo "IS_RENAMED=false" >> $GITHUB_OUTPUT
           fi
           REPO_NAME=$(echo "${{ github.event.repository.name }}" | tr '[:upper:]' '[:lower:]')
           ORG_NAME=$(echo "${{ github.event.repository.owner.name }}" | tr '[:upper:]' '[:lower:]')
           echo "REPO_NAME=$REPO_NAME" >> $GITHUB_OUTPUT
-          echo "ORG_NAME >> $ORG_NAME" >> $GITHUB_OUTPUT
+          echo "ORG_NAME=$ORG_NAME" >> $GITHUB_OUTPUT
   update-repo:
     name: Update repository references
     runs-on: ubuntu-latest

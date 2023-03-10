@@ -1,15 +1,14 @@
 import type { Knex } from 'knex'
-import env from '../../env'
 
 export const pgConfig = {
   client: 'pg',
   timezone: 'UTC',
   connection: {
-    host: env.DB_HOST,
-    port: env.DB_PORT,
-    user: env.DB_USERNAME,
-    password: env.DB_PASSWORD,
-    database: env.DB_NAME,
+    host: process.env.DB_HOST || 'localhost',
+    database: process.env.DB_NAME || 'openapi-ts-template',
+    user: process.env.DB_USERNAME || 'postgres',
+    password: process.env.DB_PASSWORD || 'postgres',
+    port: process.env.DB_PORT || '5432',
   },
   pool: {
     min: 2,
@@ -27,11 +26,11 @@ const config: { [key: string]: Knex.Config } = {
   production: {
     ...pgConfig,
     connection: {
-      host: env.DB_HOST,
-      port: env.DB_PORT,
-      user: env.DB_USERNAME,
-      password: env.DB_PASSWORD,
-      database: env.DB_NAME,
+      host: process.env.DB_HOST,
+      port: parseInt(process.env.DB_PORT || ''),
+      user: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
     },
   },
 }
