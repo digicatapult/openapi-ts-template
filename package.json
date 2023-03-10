@@ -12,7 +12,8 @@
     "dev": "npm run build && NODE_ENV=dev concurrently \"npx tsc --watch\" \"nodemon -q build/index.js | pino-colada\"",
     "test:unit": "NODE_ENV=test ./node_modules/.bin/mocha -r ts-node/register ./src/**/*.test.ts",
     "test:integration": "NODE_ENV=test ./node_modules/.bin/mocha --timeout 30000 -r ts-node/register ./integration/*.test.ts",
-    "db:migrate": "npx knex migrate:latest --knexfile src/lib/db/knexfile.js"
+    "db:migrate": "npx knex migrate:latest --knexfile src/lib/db/knexfile.js",
+    "coverage": "c8 npm run test"
   },
   "repository": {
     "type": "git",
@@ -44,6 +45,7 @@
     "@typescript-eslint/parser": "^5.36.1",
     "chai": "^4.3.6",
     "concurrently": "^7.2.0",
+    "coverage": "^0.4.1",
     "depcheck": "^1.4.3",
     "eslint": "^8.21.0",
     "eslint-config-prettier": "^8.5.0",
