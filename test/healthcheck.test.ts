@@ -1,23 +1,19 @@
 import { describe, before, test } from 'mocha'
+import { Express } from 'express'
 import { expect } from 'chai'
-
-import Request from './request'
+import createHttpServer from '../src/server' 
+import { getHealth } from './routerHelper'
 
 describe('health check', () => {
-  before(async function () {})
+  let app: Express
 
-  // DELETE Let's test errors and bad scenarios first
-  // describe('if /health does not respond', () => {})
+  before(async function () {
+    app = await createHttpServer()
+  })
 
-  // Happy path
-  /** DELETE
-   no need to indicate since we test bad scenarios first
-   due to the nature of logic: check if params supplied; if not - throw; carry on... 
-  */
-  test('returns 200', async () => {
-    const { status, body } = await Request.get('/health')
-    console.log({ status, body })
-    // its 200!
-    expect(200).to.equal(200)
+  test('Happy Path - aarch64', async () => {
+    const response = await getHealth(app)
+
+    expect(response.status).to.equal(200)
   })
 })
