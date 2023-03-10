@@ -84,18 +84,18 @@ jobs:
         run: npm ci
       - name: Run unit tests
         run: npm run test:unit
-      - name: Run database migrations # running after unit tests so we can perform e2e
-        run: npm run db:migrate # TODO include db:seed at some point
       - name: Setup dependencies
         run: docker-compose up -d
       - name: Sleep
         uses: kibertoad/wait-action@1.0.1
         with:
           time: '30s'
+      - name: Run database migrations # running after unit tests so we can perform e2e
+        run: npm run db:migrate # TODO include db:seed at some point
       - name: Build
         run: npm run build
       - name: Start service
-        run: npm start & npx wait-on http://localhost:3000 # David need help with this
+        run: npm run start
       - name: Run integration tests
         run: npm run test:integration
 
