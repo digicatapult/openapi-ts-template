@@ -15,7 +15,6 @@ export const pgConfig = {
     max: 10,
   },
   migrations: {
-    directory: '/migrations',
     tableName: 'migrations',
   },
 }
