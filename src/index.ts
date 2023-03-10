@@ -1,8 +1,8 @@
-import env from './env'
 import { Express } from 'express'
 
 import Server from './server'
-import logger from './lib/logger/index'
+import env from './env'
+import { logger } from './lib/logger'
 ;(async () => {
   const app: Express = await Server()
 

@@ -3,7 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import type { Logger } from 'pino'
 
-import logger from '../logger/index'
+import { logger } from '../logger'
 import { pgConfig } from './knexfile'
 
 const MODELS_DIRECTORY = `${process.cwd()}/src/models`

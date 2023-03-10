@@ -1,8 +1,8 @@
 import pino, { Logger } from 'pino'
 
-import env from '../../env'
+import env from '../env'
 
-const logger: Logger = pino(
+export const logger: Logger = pino(
   {
     name: 'openapi-ts-template',
     timestamp: true,
@@ -10,5 +10,3 @@ const logger: Logger = pino(
   },
   process.stdout
 )
-
-export default logger
