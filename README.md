@@ -2,22 +2,22 @@
 
 ## Description
 
-A `Node.js` typescript template with open api implementation 
+A `Node.js` typescript template with open api implementation
 
 ## Configuration
 
-Use a `.env` at root of the repository to set values for the environment variables defined in `.env` file. 
+Use a `.env` at root of the repository to set values for the environment variables defined in `.env` file.
 
-| variable         | required |   default   | description                                                                          |
-| :--------------- | :------: | :----------------------: | :----------------------------------------------------------------------------------- |
-| PORT             |    N     |   `3000`                 | The port for the API to listen on                                                    |
-| LOG_LEVEL        |    N     |   `debug`                | Logging level. Valid values are [`trace`, `debug`, `info`, `warn`, `error`, `fatal`] |
-| ENVIRONMENT_VAR  |    N     |  `example`               | An environment specific variable                                                     |
-| DB_PORT          |    N     |   `5432`                 | The port for the database                                                            |
-| DB_HOST          |    N     |   `localhost`            | The database hostname / host                                                         |
-| DB_NAME          |    N     |   `openapi-ts-template ` | The database name                                                                    |
-| DB_USERNAME      |    N     |   `postgres`             | The database username                                                                |
-| DB_PASSWORD      |    N     |   `postgres`             | The database password                                                                |
+| variable        | required |        default         | description                                                                          |
+| :-------------- | :------: | :--------------------: | :----------------------------------------------------------------------------------- |
+| PORT            |    N     |         `3000`         | The port for the API to listen on                                                    |
+| LOG_LEVEL       |    N     |        `debug`         | Logging level. Valid values are [`trace`, `debug`, `info`, `warn`, `error`, `fatal`] |
+| ENVIRONMENT_VAR |    N     |       `example`        | An environment specific variable                                                     |
+| DB_PORT         |    N     |         `5432`         | The port for the database                                                            |
+| DB_HOST         |    N     |      `localhost`       | The database hostname / host                                                         |
+| DB_NAME         |    N     | `openapi-ts-template ` | The database name                                                                    |
+| DB_USERNAME     |    N     |       `postgres`       | The database username                                                                |
+| DB_PASSWORD     |    N     |       `postgres`       | The database password                                                                |
 
 ## Getting started
 
@@ -40,14 +40,14 @@ localhost:3000/swagger/
 
 ## Tests
 
-**Unit** and **integration** test are executed by calling the following commands:
+Integration tests are executed by calling:
 
 ```sh
-npm run test:integration
-npm run test:unit
+npm run test
 ```
 
-## TODO
-- [ ] - expand on this after first controllers are in
-- [ ] - get rid of all anys
-- [ ] - expand this list
+Unit tests are executed by calling:
+
+```sh
+npm run test:unit
+```

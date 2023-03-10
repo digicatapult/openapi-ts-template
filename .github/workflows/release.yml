@@ -105,7 +105,9 @@ jobs:
         run: npm run db:migrate
         env:
           NODE_ENV: test
-      - name: Run tests
+      - name: Run unit tests
+        run: npm run test:unit
+      - name: Run integration tests
         run: npm run test
 
   check-version:
