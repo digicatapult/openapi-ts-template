@@ -2,7 +2,7 @@ import { Controller, Get, Route, Request } from 'tsoa'
 
 import * as Ex from 'express'
 import type { Health } from '../../models'
-import logger from '../../lib/logger'
+import logger from '../../lib/logger/index'
 import { Logger } from 'pino'
 @Route('health')
 export class health extends Controller {

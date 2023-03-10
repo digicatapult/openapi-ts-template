@@ -1,7 +1,7 @@
 import { Response as ExResponse, Request as ExRequest, NextFunction } from 'express'
 import { ValidateError } from 'tsoa'
 
-import logger from '../logger'
+import logger from '../logger/index'
 
 export interface ValidateErrorJSON {
   message: 'Validation failed'
