@@ -29,6 +29,7 @@ export default class Database {
     fs.readdirSync(MODELS_DIRECTORY).forEach((file: string) => {
       const { name } = path.parse(file)
 
+      // TODO check if table exists -> append to the db object
       if (name != 'index.d') this.db[name] = () => this.client(name)
     })
   }

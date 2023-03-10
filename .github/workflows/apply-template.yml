@@ -28,8 +28,8 @@ jobs:
           fi
           REPO_NAME=$(echo "${{ github.event.repository.name }}" | tr '[:upper:]' '[:lower:]')
           ORG_NAME=$(echo "${{ github.event.repository.owner.name }}" | tr '[:upper:]' '[:lower:]')
-          echo "REPO_NAME >> $REPO_NAME"
-          echo "ORG_NAME >> $ORG_NAME"
+          echo "REPO_NAME=$REPO_NAME" >> $GITHUB_OUTPUT
+          echo "ORG_NAME >> $ORG_NAME" >> $GITHUB_OUTPUT
   update-repo:
     name: Update repository references
     runs-on: ubuntu-latest

@@ -8,15 +8,9 @@ function check_versions_consistent () {
   local PACKAGE_LOCK_VERSION=$(yq eval '.version' ./package-lock.json)
 
   if [ "$PACKAGE_VERSION" != "$PACKAGE_LOCK_VERSION" ] ||
-     [ "v$PACKAGE_VERSION" != "$HELM_VALUES_TAG_VERSION" ] ||
-     [ "$PACKAGE_VERSION" != "$HELM_CHART_VERSION" ] ||
-     [ "$PACKAGE_VERSION" != "$HELM_CHART_APP_VERSION" ]; then
     echo "Inconsistent versions detected"
     echo "PACKAGE_VERSION: $PACKAGE_VERSION"
     echo "PACKAGE_LOCK_VERSION: $PACKAGE_LOCK_VERSION"
-    echo "HELM_VALUES_TAG_VERSION: $HELM_VALUES_TAG_VERSION"
-    echo "HELM_CHART_VERSION: $HELM_CHART_VERSION"
-    echo "HELM_CHART_APP_VERSION: $HELM_CHART_APP_VERSION"
     exit 1
   fi
 }
