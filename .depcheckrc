@@ -3,5 +3,4 @@ ignores: [
   "@types/sinon",
   "concurrently",
   "nodemon",
-  "sinon"
 ]

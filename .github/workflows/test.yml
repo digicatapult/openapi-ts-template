@@ -67,7 +67,6 @@ jobs:
   tests:
     name: Run tests
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -83,16 +82,22 @@ jobs:
             ${{ runner.OS }}-
       - name: Install Packages
         run: npm ci
+      - name: Run unit tests
+        run: npm run test:unit
+      - name: Run database migrations # running after unit tests so we can perform e2e
+        run: npm run db:migrate # TODO include db:seed at some point
       - name: Setup dependencies
         run: docker-compose up -d
       - name: Sleep
         uses: kibertoad/wait-action@1.0.1
         with:
           time: '30s'
-      - name: Initialise DB
-        run: npm run db:migrate
-      - name: Run tests
-        run: npm run test
+      - name: Build
+        run: npm run build
+      - name: Start service
+        run: npm start & npx wait-on http://localhost:3000 # David need help with this
+      - name: Run integration tests
+        run: npm run test:integration
 
   check-version:
     name: "Check version"
