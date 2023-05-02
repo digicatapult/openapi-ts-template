@@ -1,6 +1,6 @@
 {
   "name": "@digicatapult/openapi-ts-template",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "An open api typescript nodejs/express api service template",
   "main": "src/index.ts",
   "scripts": {
@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/digicatapult/openapi-ts-template#readme",
   "devDependencies": {
-    "@types/chai": "^4.3.4",
+    "@types/chai": "^4.3.5",
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
     "@types/mocha": "^9.1.1",
