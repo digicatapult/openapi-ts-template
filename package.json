@@ -1,6 +1,6 @@
 {
   "name": "@digicatapult/openapi-ts-template",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "description": "An open api typescript nodejs/express api service template",
   "main": "src/index.ts",
   "scripts": {
@@ -46,7 +46,7 @@
     "chai": "^4.3.7",
     "concurrently": "^7.6.0",
     "depcheck": "^1.4.3",
-    "eslint": "^8.40.0",
+    "eslint": "^8.41.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
     "mocha": "^10.2.0",
