@@ -1,6 +1,6 @@
 {
   "name": "@digicatapult/openapi-ts-template",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "description": "An open api typescript nodejs/express api service template",
   "main": "src/index.ts",
   "scripts": {
@@ -40,9 +40,9 @@
     "@types/node": "^17.0.34",
     "@types/supertest": "^2.0.12",
     "@types/swagger-ui-express": "^4.1.3",
-    "@typescript-eslint/eslint-plugin": "^5.59.7",
-    "@typescript-eslint/parser": "^5.59.7",
-    "c8": "^7.13.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.8",
+    "@typescript-eslint/parser": "^5.59.8",
+    "c8": "^7.14.0",
     "chai": "^4.3.7",
     "concurrently": "^7.6.0",
     "depcheck": "^1.4.3",
@@ -60,7 +60,7 @@
   "dependencies": {
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
+    "dotenv": "^16.1.0",
     "envalid": "^7.3.1",
     "express": "^4.18.2",
     "knex": "^2.4.2",
